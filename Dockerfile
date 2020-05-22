@@ -50,7 +50,18 @@ ARG PORT=80
 ENV PORT $PORT
 EXPOSE $PORT
 
-COPY --from=build /twitter-dashboard/build /usr/share/nginx/html
+COPY ./docker/nginx /
+
+RUN set -x \
+ && mkdir /twitter-dashboard \ 
+ && chown -R nginx:nginx /twitter-dashboard \
+ && chown -R nginx:nginx /var/cache/nginx
+
+WORKDIR /twitter-dashboard
+
+USER nginx
+
+COPY --chown=nginx:nginx --from=build /twitter-dashboard/build ./build
 
 
 # -------------------- dev-dependencies -------------------- #
