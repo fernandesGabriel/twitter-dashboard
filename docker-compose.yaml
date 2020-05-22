@@ -6,14 +6,13 @@ services:
         build:
             context: .
             target: app
+            args:
+                - PORT=3000
+                - NODE_ENV=development
         volumes:
             - ".:/twitter-dashboard"
-        expose:
-            - "3000"
         ports:
-            - "3001:3000"
-        env_file:
-            - .env
+            - "8080:3000"
         stdin_open: true
 
     cli:
@@ -22,10 +21,4 @@ services:
             target: cli
         volumes:
             - ".:/twitter-dashboard" 
-        env_file:
-            - .env
-    
-networks:
-    default:
-        name: twitter-dashboard
     
