@@ -39,8 +39,7 @@ COPY --chown=node:node --from=dependencies /twitter-dashboard ./
 COPY --chown=node:node . ./
 
 RUN set -x \
- && npm run build \
- && ls -la
+ && npm run build
 
 
 # -------------------- prod-app -------------------- #
