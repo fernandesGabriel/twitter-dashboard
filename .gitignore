@@ -1,3 +1,7 @@
+### React ###
+# Build
+build/
+
 ### Node ###
 # Logs
 logs

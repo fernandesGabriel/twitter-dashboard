@@ -1,6 +1,8 @@
 ARG NODE_VERSION=14.2.0
 ARG NODE_ALPINE_VERSION=3.11
 
+ARG NGINX_VERSION=1.18.0
+
 
 # -------------------- base -------------------- #
 
@@ -28,24 +30,28 @@ RUN set -x \
  && npm ci
  
 
-# -------------------- app -------------------- #
+# -------------------- build -------------------- #
 
-FROM base AS app
-
-ARG PORT=3000
-ENV PORT $PORT
-EXPOSE $PORT
+FROM base AS build
 
 COPY --chown=node:node --from=dependencies /twitter-dashboard ./
 
 COPY --chown=node:node . ./
 
+RUN set -x \
+ && npm run build \
+ && ls -la
+
 
 # -------------------- prod-app -------------------- #
 
-FROM app AS prod-app
+FROM nginx:${NGINX_VERSION}-alpine AS prod-app
 
-CMD [ "npm", "start" ]
+ARG PORT=80
+ENV PORT $PORT
+EXPOSE $PORT
+
+COPY --from=build /twitter-dashboard/build /usr/share/nginx/html
 
 
 # -------------------- dev-dependencies -------------------- #
@@ -58,9 +64,16 @@ RUN set -x \
 
 # -------------------- dev-app -------------------- #
 
-FROM app AS dev-app
+FROM base AS dev-app
 
+ARG PORT=8080
+ENV PORT $PORT
+EXPOSE $PORT
+
+COPY --chown=node:node --from=dependencies /twitter-dashboard ./
 COPY --chown=node:node --from=dev-dependencies /twitter-dashboard ./
+
+COPY --chown=node:node . ./
 
 ENV PATH=/twitter-dashboard/node_modules/.bin:$PATH
 

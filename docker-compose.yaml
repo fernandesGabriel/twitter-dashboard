@@ -7,12 +7,12 @@ services:
             context: .
             target: dev-app
             args:
-                - PORT=3000
+                - PORT=8080
                 - NODE_ENV=development
         volumes:
             - ".:/twitter-dashboard"
         ports:
-            - "8080:3000"
+            - "8080:8080"
         stdin_open: true
 
     cli:
