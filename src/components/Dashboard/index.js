@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import socketClient from 'socket.io-client';
+import React from 'react';
+import Header from '../Header';
+import Feed from '../Feed';
 
-function Dashboard() {
-  const [response, setResponse] = useState('');
-
-  useEffect(() => {
-    const socket = socketClient(process.env.REACT_APP_SOCKET_HOSTNAME, { path: '/socket/feed' });
-
-    socket.on('feed', data => {
-      setResponse(data);
-    });
-  }, []);
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p> Twitter Dasboard {response}</p>
-      </header>
-    </div>
-  );
+export default class Dasboard extends React.Component {
+  render() {
+    return (
+      <div className="dashboard">
+        <Header />
+        <Feed />
+      </div>
+    )
+  }
 }
-
-export default Dashboard;
