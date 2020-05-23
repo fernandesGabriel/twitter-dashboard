@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import socketClient from 'socket.io-client';
 
-const SOCKET_SERVER = 'localhost:3000';
-const ENDPOINT = '/socket/feed';
-
-function App() {
+function Dashboard() {
   const [response, setResponse] = useState('');
 
   useEffect(() => {
-    const socket = socketClient(SOCKET_SERVER, { path: ENDPOINT});
+    const socket = socketClient(process.env.REACT_APP_SOCKET_HOSTNAME, { path: '/socket/feed' });
 
     socket.on('feed', data => {
       setResponse(data);
@@ -24,4 +21,4 @@ function App() {
   );
 }
 
-export default App;
+export default Dashboard;
