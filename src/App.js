@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import socketIOClient from 'socket.io-client';
+import socketClient from 'socket.io-client';
 
-const ENDPOINT = 'localhost:3000';
+const SOCKET_SERVER = 'localhost:3000';
+const ENDPOINT = '/socket/feed';
 
 function App() {
   const [response, setResponse] = useState('');
 
   useEffect(() => {
-    const socket = socketIOClient(ENDPOINT);
+    const socket = socketClient(SOCKET_SERVER, { path: ENDPOINT});
 
-    socket.on('FromAPI', data => {
+    socket.on('feed', data => {
       setResponse(data);
     });
   }, []);
