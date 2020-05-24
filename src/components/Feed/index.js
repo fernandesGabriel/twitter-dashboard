@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import socketClient from 'socket.io-client';
 import Card from '../Card';
 
 const FEED_MAX_SIZE = 100;
+
+const SOCKET_PATH = '/socket/feed/twitter';
+const SOCKET_CHANNEL = 'twitter-stream';
 
 export default class Feed extends React.Component {
   constructor(props) {
@@ -11,19 +14,17 @@ export default class Feed extends React.Component {
   }
 
   componentDidMount() {
-    const socket = socketClient(process.env.REACT_APP_SOCKET_HOSTNAME, { path: '/socket/feed' });
+    const socket = socketClient(process.env.REACT_APP_SOCKET_HOSTNAME, { path: SOCKET_PATH });
 
-    socket.on('feed', data => {
-      if (data) {
-        this.feedDidChange(data);
-      }
+    socket.on(SOCKET_CHANNEL, data => {
+      this.feedDidChange(data);
     });
   }
 
   feedDidChange(data) {
     const feed = this.state.feed;
 
-    feed.unshift({ text: data });
+    feed.unshift(data);
     if (feed.length > FEED_MAX_SIZE) {
       feed.splice(-1,1);
     }
@@ -34,7 +35,7 @@ export default class Feed extends React.Component {
   render() {
     return (
       <div>
-        {this.state.feed.map((post) => <Card {...post} /> )}
+        {this.state.feed.map((post, index) => <Card key={index} post={post} /> )}
       </div>
     );
   }
