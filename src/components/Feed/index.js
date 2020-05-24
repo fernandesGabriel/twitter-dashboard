@@ -22,7 +22,7 @@ export default class Feed extends React.Component {
   componentDidMount() {
     const socket = socketClient(process.env.REACT_APP_SOCKET_HOSTNAME, { path: SOCKET_PATH });
 
-    socket.on(SOCKET_CHANNEL, data => {
+    socket.on(SOCKET_CHANNEL, (data) => {
       this.feedDidChange(data);
     });
   }
