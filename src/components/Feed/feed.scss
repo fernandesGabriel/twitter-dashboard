@@ -1,0 +1,10 @@
+// variables
+$loader-size: 80px;
+
+// styles
+.feed {
+    &-loader {
+        margin: 0 auto;
+        width: $loader-size;
+    }
+}

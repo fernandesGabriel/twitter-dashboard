@@ -3,6 +3,7 @@ import socketClient from 'socket.io-client';
 
 // components
 import Card from '../Card';
+import Loader from '../Loader';
 
 // styles
 import './feed.scss';
@@ -40,7 +41,11 @@ export default class Feed extends React.Component {
   render() {
     return (
       <div className="feed">
-        {this.state.feed.map((post, index) => <Card key={index} post={post} />)}
+        {
+          this.state.feed.length > 0
+            ? this.state.feed.map((post, index) => <Card key={index} post={post} />)
+            : <div className="feed-loader"><Loader /></div>
+        }
       </div>
     );
   }
