@@ -4,8 +4,10 @@ $header-spacing: 50px;
 // styles
 .header {
     margin: $header-spacing 0;
-
     &-title {
+        margin-bottom: $header-spacing;
+        font-size: 2.5em;
+        font-weight: 600;
         text-align: center;
     }
 }
