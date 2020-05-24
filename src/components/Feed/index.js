@@ -1,5 +1,5 @@
 import React from 'react';
-import socket from '../../services/socket'
+import socket from '../../providers/socket'
 
 // components
 import Card from '../Card';

@@ -1,5 +1,5 @@
 import React from 'react';
-import socket from '../../services/socket'
+import socket from '../../providers/socket'
 
 // styles
 import './search.scss';
@@ -49,7 +49,7 @@ export default class Search extends React.Component {
     if (!socket.connected)
       socket.connect()
 
-      socket.emit(SOCKET_CHANNEL, 'searcher', track);
+    socket.emit(SOCKET_CHANNEL, 'searcher', track);
   }
 
   render() {
