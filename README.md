@@ -29,4 +29,5 @@ http://localhost:8080
 
 - Add tests
 - Add error collection and improve user handling
-- Fix misbehavior of search bar and feed stream
+- Clean feed on empty query
+- Split card component into smaller components
