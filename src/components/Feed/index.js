@@ -1,5 +1,5 @@
 import React from 'react';
-import socketClient from 'socket.io-client';
+import socket from '../../services/socket'
 
 // components
 import Card from '../Card';
@@ -10,7 +10,6 @@ import './feed.scss';
 
 const FEED_MAX_SIZE = 100;
 
-const SOCKET_PATH = '/socket/feed/twitter';
 const SOCKET_CHANNEL = 'twitter-stream';
 
 export default class Feed extends React.Component {
@@ -20,8 +19,6 @@ export default class Feed extends React.Component {
   }
 
   componentDidMount() {
-    const socket = socketClient(process.env.REACT_APP_SOCKET_HOSTNAME, { path: SOCKET_PATH });
-
     socket.on(SOCKET_CHANNEL, (data) => {
       this.feedDidChange(data);
     });

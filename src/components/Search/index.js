@@ -1,5 +1,5 @@
 import React from 'react';
-import socketClient from 'socket.io-client';
+import socket from '../../services/socket'
 
 // styles
 import './search.scss';
@@ -7,7 +7,6 @@ import './search.scss';
 const WAIT_INTERVAL = 800
 const ENTER_KEY = 13
 
-const SOCKET_PATH = '/socket/feed/twitter';
 const SOCKET_CHANNEL = 'twitter-track-for';
 
 export default class Search extends React.Component {
@@ -45,7 +44,6 @@ export default class Search extends React.Component {
   }
 
   triggerChange() {
-    const socket = socketClient(process.env.REACT_APP_SOCKET_HOSTNAME, { path: SOCKET_PATH });
     const track = this.state.track;
 
     socket.on('connect', () => {
