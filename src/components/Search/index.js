@@ -1,4 +1,5 @@
 import React from 'react';
+import socketClient from 'socket.io-client';
 
 // styles
 import './search.scss';
@@ -6,24 +7,27 @@ import './search.scss';
 const WAIT_INTERVAL = 800
 const ENTER_KEY = 13
 
+const SOCKET_PATH = '/socket/feed/twitter';
+const SOCKET_CHANNEL = 'twitter-track-for';
+
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { watch: '' };
+    this.state = { track: '' };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.triggerChange = this.triggerChange.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.timer = null;
   }
 
   handleChange(event) {
     clearTimeout(this.timer);
 
-    this.setState({ watch: event.target.value });
+    this.setState({ track: event.target.value });
 
     this.timer = setTimeout(this.triggerChange, WAIT_INTERVAL);
   }
@@ -41,14 +45,19 @@ export default class Search extends React.Component {
   }
 
   triggerChange() {
-    const watch = this.state.watch;
+    const socket = socketClient(process.env.REACT_APP_SOCKET_HOSTNAME, { path: SOCKET_PATH });
+    const track = this.state.track;
+
+    socket.on('connect', () => {
+      socket.emit(SOCKET_CHANNEL, 'searcher', track);
+    });
   }
 
   render() {
     return (
       <div className="search">
         <form onSubmit={this.handleSubmition}>
-          <span className="search-label"> Watching for: </span>
+          <span className="search-label"> Tracking for: </span>
           <input className="search-input" type="text" onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder="Try Javascript" />
         </form>
       </div>
