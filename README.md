@@ -20,6 +20,11 @@ make build
 docker-compose up app
 ```
 
+Your server will be available at:
+```
+http://localhost:8080
+```
+
 ### To-do
 
 - Add tests
