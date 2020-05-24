@@ -46,9 +46,10 @@ export default class Search extends React.Component {
   triggerChange() {
     const track = this.state.track;
 
-    socket.on('connect', () => {
+    if (!socket.connected)
+      socket.connect()
+
       socket.emit(SOCKET_CHANNEL, 'searcher', track);
-    });
   }
 
   render() {
