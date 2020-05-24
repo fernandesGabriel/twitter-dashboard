@@ -1,0 +1,59 @@
+// variables
+$card-spacing: 25px;
+$card-backgorund-color: #fff;
+
+$icon-size: 50px;
+
+$badge-item-radius: 20px;
+$badge-item-backgorund-color: #e6e6e6;
+
+// styles
+.card {
+    position: relative;
+    background: $card-backgorund-color;
+    margin-bottom: $card-spacing;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    &-text {
+        padding: $card-spacing $card-spacing $card-spacing #{($card-spacing * 2) + $icon-size};
+        line-height: 1.75em;
+        p {
+            margin: 0px;
+        }
+    }
+
+    &-icon {
+        img {
+            position: absolute;
+            width: $icon-size;
+            height: $icon-size;
+            top: $card-spacing;
+            left: $card-spacing;
+            border-radius: 50%;
+        }
+    }
+
+    &-badges {
+        padding: 0 $card-spacing $card-spacing #{($card-spacing * 2) + $icon-size};
+
+        &-item {
+            padding: 0.5em 1.25em;
+            border: none;
+            background-color: $badge-item-backgorund-color;
+            margin-right: 1em;
+            border-radius: $badge-item-radius;
+        }
+
+        a {
+            text-decoration: none;
+            &:hover {
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+            }
+        }
+    }
+}

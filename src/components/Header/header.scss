@@ -1,0 +1,11 @@
+// variables
+$header-spacing: 50px;
+
+// styles
+.header {
+    margin: $header-spacing 0;
+
+    &-title {
+        text-align: center;
+    }
+}

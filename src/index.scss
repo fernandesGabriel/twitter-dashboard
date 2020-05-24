@@ -1,0 +1,17 @@
+// framework css imports
+@import "../node_modules/purecss/build/base.css";
+
+// font imports
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap");
+
+// variables
+$backgorund-color: #efefef;
+$font-color: #333;
+$font-family: "Raleway", sans-serif;
+
+// styles
+body {
+    background-color: $backgorund-color;
+    color: $font-color;
+    font-family: $font-family;
+}
