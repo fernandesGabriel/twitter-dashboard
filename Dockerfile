@@ -46,7 +46,7 @@ RUN set -x \
 
 FROM nginx:${NGINX_VERSION}-alpine AS prod-app
 
-ARG PORT=80
+ARG PORT=8080
 ENV PORT $PORT
 EXPOSE $PORT
 
