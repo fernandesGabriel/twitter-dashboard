@@ -1,11 +1,7 @@
 // variables
 $card-spacing: 25px;
 $card-backgorund-color: #fff;
-
 $card-icon-size: 50px;
-
-$tag-radius: 20px;
-$tag-backgorund-color: #e6e6e6;
 
 // styles
 .card {
@@ -22,6 +18,7 @@ $tag-backgorund-color: #e6e6e6;
     &__text {
         padding: $card-spacing $card-spacing $card-spacing #{($card-spacing * 2) + $card-icon-size};
         line-height: 1.75em;
+        
         p {
             margin: 0px;
         }
@@ -40,24 +37,5 @@ $tag-backgorund-color: #e6e6e6;
 
     &__tags {
         padding: 0 $card-spacing $card-spacing #{($card-spacing * 2) + $card-icon-size};
-    }
-}
-
-.tag {
-    padding: 0.5em 1.25em;
-    border: none;
-    background-color: $tag-backgorund-color;
-    margin-right: 1em;
-    border-radius: $tag-radius;
-
-    a {
-        text-decoration: none;
-    }
-
-    &--clickable {
-        &:hover {
-            cursor: pointer;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
-        }
     }
 }

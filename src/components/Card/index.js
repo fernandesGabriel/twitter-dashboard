@@ -1,5 +1,8 @@
 import React from 'react';
 
+// components
+import Tag from '../Tag';
+
 // styles
 import './card.scss';
 
@@ -19,12 +22,8 @@ export default class Card extends React.Component {
         </div>
 
         <div className="card__tags">
-          <span className="tag"> {new Date(post.created_at).toLocaleTimeString()} </span>
-          <span className="tag tag--clickable">
-            <a href={`https://twitter.com/${post.user.screen_name}`} target="_blank" rel='noopener noreferrer'>
-              @{post.user.screen_name}
-            </a>
-          </span>
+          <Tag text={new Date(post.created_at).toLocaleTimeString()}/>
+          <Tag text={`@${post.user.screen_name}`} href={`https://twitter.com/${post.user.screen_name}`}/>
         </div>
       </div>
     )
