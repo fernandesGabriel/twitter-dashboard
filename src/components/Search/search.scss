@@ -3,11 +3,12 @@ $search-spacing: 15px;
 
 // styles
 .search {
-    &-label {
+    &__label {
         padding-left: $search-spacing;
         font-weight: 600;
     }
-    &-input {
+    
+    &__input {
         width: 100%;
         padding: $search-spacing;
         background: none;

@@ -56,8 +56,8 @@ export default class Search extends React.Component {
     return (
       <div className="search">
         <form onSubmit={this.handleSubmition}>
-          <span className="search-label"> Tracking for: </span>
-          <input className="search-input" type="text" onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder="Try Javascript" />
+          <span className="search__label"> Tracking for: </span>
+          <input className="search__input" type="text" onChange={this.handleChange} onKeyDown={this.handleKeyDown} placeholder="Try Javascript" />
         </form>
       </div>
     )

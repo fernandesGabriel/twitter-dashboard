@@ -41,7 +41,7 @@ export default class Feed extends React.Component {
         {
           this.state.feed.length > 0
             ? this.state.feed.map((post, index) => <Card key={index} post={post} />)
-            : <div className="feed-loader"><Loader /></div>
+            : <div className="feed__loader"><Loader /></div>
         }
       </div>
     );
