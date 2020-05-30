@@ -30,4 +30,3 @@ http://localhost:8080
 - Add tests
 - Add error collection and improve user handling
 - Clean feed on empty query
-- Split card component into smaller components
