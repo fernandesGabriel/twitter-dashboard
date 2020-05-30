@@ -22,8 +22,8 @@ export default class Card extends React.Component {
         </div>
 
         <div className="card__tags">
-          <Tag text={new Date(post.created_at).toLocaleTimeString()}/>
-          <Tag text={`@${post.user.screen_name}`} href={`https://twitter.com/${post.user.screen_name}`}/>
+          <Tag text={new Date(post.created_at).toLocaleTimeString()} />
+          <Tag text={`@${post.user.screen_name}`} href={`https://twitter.com/${post.user.screen_name}`} />
         </div>
       </div>
     )

@@ -40,10 +40,28 @@ export default class Feed extends React.Component {
       <div className="feed">
         {
           this.state.feed.length > 0
-            ? this.state.feed.map((post, index) => <Card key={index} post={post} />)
-            : <div className="feed__loader"><Loader /></div>
+            ? <FeedList items={this.state.feed} />
+            : <FeedLoader />
         }
       </div>
     );
+  }
+}
+
+class FeedList extends React.Component {
+  render() {
+    return (
+      this.props.items.map((post, index) => <Card key={index} post={post} />)
+    )
+  }
+}
+
+class FeedLoader extends React.Component {
+  render() {
+    return (
+      <div className="feed__loader">
+        <Loader />
+      </div>
+    )
   }
 }
